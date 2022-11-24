@@ -1,0 +1,4 @@
+../UUT/Src/ExtraTools.c:4:5:__io_putchar	16	static
+../UUT/Src/ExtraTools.c:11:5:_write	24	static
+../UUT/Src/ExtraTools.c:18:5:_read	32	static
+../UUT/Src/ExtraTools.c:43:6:print_msg	16	static

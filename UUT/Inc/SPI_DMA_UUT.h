@@ -15,12 +15,16 @@
 /**@brief the address of the handle of the SPI device that receive*/
 #define SPI_SLAVE &hspi4
 
-/**@brief the handle of SPI_MASTER*/
-extern SPI_HandleTypeDef hspi1;
-
 /**@brief the handle of SPI_SLAVE*/
 extern SPI_HandleTypeDef hspi4;
 
-uint8_t SPI_UUT_DMA(const uint8_t *bit_pattern, const uint8_t bit_pattern_length);
+/**@brief the handle of SPI_MASTER*/
+extern SPI_HandleTypeDef hspi1;
+
+extern uint8_t local_master_buffer[MAX_SPI_MASTER_BUFFER_SIZE];
+
+extern uint8_t local_slave_buffer[MAX_SPI_SLAVE_BUFFER_SIZE];
+
+uint8_t SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t iterations);
 
 #endif //SPI_H_SPI_H_SPI_H

@@ -1,0 +1,2 @@
+../UUT/Src/TIMER_UUT.c:21:6:HAL_TIM_PeriodElapsedCallback	16	static
+../UUT/Src/TIMER_UUT.c:42:9:TIMER_UUT	48	static

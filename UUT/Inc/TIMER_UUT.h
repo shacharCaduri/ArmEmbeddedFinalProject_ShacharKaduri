@@ -8,6 +8,17 @@
 #ifndef INC_TIMER_UUT_H_
 #define INC_TIMER_UUT_H_
 #include "main.h"
+#include "stm32f7xx_hal.h"
+
+/* ********************** Defines ************************************************************************ */
+/**@brief the clock frequency the basic timer uses to calculate the time*/
+#define SYS_CLK_FREQ 72000000
+
+/**@brief the added value in the calculation of the timer time elapsed of period register*/
+#define PERIOD_ADDED_VAL 1
+
+/**@brief the added value in the calculation of the timer time elapsed of prescalar register*/
+#define PRESCALAR_ADDED_VAL 1
 
 /**@brief user costum prescalar value*/
 #define USER_PRESCALAR	7199
@@ -21,9 +32,6 @@
 /**@brief false magic number for timer end flag*/
 #define TIMER_NOT_END 0
 
-/**@brief the timer to be used. this timer used when the server request to test timer.*/
-extern TIM_HandleTypeDef htim7;
-
 /**
  * @def COSTUM_BASIC_TIMER_HANDLE
  * @brief definition for better code readability.
@@ -32,39 +40,34 @@ extern TIM_HandleTypeDef htim7;
 
 /** @brief the define for the timer's value.*/
 #define BASIC_TIMER1 TIM7
+/* ******************************************************************************************************* */
+
+/* **************************** Externs ****************************************************************** */
+/**@brief the timer to be used. this timer used when the server request to test timer.*/
+extern TIM_HandleTypeDef htim7;
 
 /**
- * @brief Sets the alignment of all aggregate members to a specified byte boundary.
- * 		  If the byte boundary number is smaller than the natural alignment of a member,
- * 		  padding bytes are removed, thereby reducing the overall structure or union size.
+ * @brief the timer flag to be used by the program's callback function.
+ * 		  if the Ethernet packet data request to use timer.
  */
-#pragma pack(1)
-/**
- * @brief the timer flag struct to be used by program's callback function.
- * @var   bit - is a bit field defined to hold one bit so it will be 0 or 1 and nothing else.
- * 		  this is bit is turned on when timer elapsed to enable operation based upon a timer.
- */
-typedef struct timer_flag {
-	uint8_t bit:1;
-} tFlag;
-/** @brief @reset the packing to the previous packing*/
-#pragma pack()
+extern uint8_t timer_end;
+/* ******************************************************************************************************* */
 
+/* **************************** Functions **************************************************************** */
 /**
- * @brief this is the for user programmer to see there is a timer flag to indicate timer ends.
- * 		  this flag is a timer_flag type. tFlag is an alias for timer_flag.
+ * @fn uint8_t TIMER_UUT(uint32_t prescalar, uint32_t period, uint8_t iterations)
+ * @brief initialize and start the timer with prescalar and period values
+ * 		  so the user will decide the time where the timer elapsed, test if it
+ * 		  is indeed working correctly if a the given time really passed.
+ * 		  test the timer peripheral. this done by using delay which uses busy loop and count ticks
+ * 		  after the interrupt timer started so the timer_end flag must be set before the delay ends
+ * 		  otherwise, it is not working correctly.
+ * @param 	prescalar		the prescalar value.
+ * @param 	period			the period value.
+ * @param 	iterations		running the test number of iterations.
+ * @return	running it number of iterations to if one of them fails return TEST_FAILED 0xff, otherwise TEST_SUCCEED 0x01
  */
-extern tFlag timer_end;
-
-/**
- * @fn void timer_init(TIM_HandleTypeDef*, uint32_t, uint32_t)
- * @brief initialize and start the timer given with prescalar and period values
- * 		  so the user will decide the time where the timer elapsed.
- *
- * @param htim 		the timer to init and start.
- * @param prescalar	the prescalar value.
- * @param periodq	the period value.
- */
-void timer_init_start(TIM_HandleTypeDef *htim, uint32_t prescalar, uint32_t period);
+uint8_t TIMER_UUT(uint32_t prescalar, uint32_t period, uint8_t iterations);
+/* ******************************************************************************************************* */
 
 #endif /* INC_TIMER_UUT_H_ */

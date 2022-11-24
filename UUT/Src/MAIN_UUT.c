@@ -27,9 +27,11 @@ void UUT_main(void)
 		sys_check_timeouts();
 		if(udp_packet_is_received == PACKET_RECEIVED)
 		{
-//			test_status = (UART_DMA_UUT((uint8_t*)"ShacharIsTheKing\r\n", 18));
-//			test_status = (I2C_UUT_DMA((uint8_t*)"ShacharIsTheKing\r\n", 18));
-			test_status = (SPI_UUT_DMA((uint8_t*)"ShacharIsTheKing\r\n", 18));
+			test_status = (UART_DMA_UUT((uint8_t*)"ShacharIsTheKing\r\n", 18,1));
+			test_status = (I2C_UUT_DMA((uint8_t*)"ShacharIsTheKing\r\n", 18,1));
+			test_status = (SPI_UUT_DMA((uint8_t*)"ShacharIsTheKing\r\n", 18,4));
+
+			test_status = TIMER_UUT(7199,9999,1);
 			buildResProtocol(*(uint32_t*)"1523\n", TEST_SUCCEED);
 			udpClient_send(&sentPacketData,sizeof(sentPacketData));
 			udp_packet_is_received = PACKET_NOT_RECEIVED;

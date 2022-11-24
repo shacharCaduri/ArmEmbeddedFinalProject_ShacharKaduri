@@ -58,10 +58,11 @@ extern I2C_HandleTypeDef hi2c2;
  *
  * @param 	bit_pattern 			the data to test the I2C on
  * @param 	bit_pattern_length		the data's length to test the I2C on
- * @return 	if bit pattern at start of the communication equals to the same as in the end return 0x01
- * 		   	TEST_SUCCEED, otherwise TEST_FAILED.
+ * @param iterations			running tests number of iterations.
+ * @return number of iterations will be run, each iteration if bit pattern at start of the communication
+ * 		   equals to the same as in the end RETURN 0xff TEST_FAILED, otherwise  0X01 TEST_SUCCEED.
  */
-uint8_t I2C_UUT_DMA(const uint8_t *bit_pattern, const uint8_t bit_pattern_length);
+uint8_t I2C_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations);
 /* ************************************************************************************ */
 
 #endif //I2C_H_I2C_H_I2C_H
