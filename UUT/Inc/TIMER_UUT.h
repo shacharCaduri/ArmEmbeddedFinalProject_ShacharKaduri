@@ -67,7 +67,7 @@ extern uint8_t timer_end;
  * @param 	iterations		running the test number of iterations.
  * @return	running it number of iterations to if one of them fails return TEST_FAILED 0xff, otherwise TEST_SUCCEED 0x01
  */
-uint8_t TIMER_UUT(uint32_t prescalar, uint32_t period, uint8_t iterations);
+uint8_t TIMER_UUT(/*uint32_t prescalar, uint32_t period,*/ uint8_t iterations);
 /* ******************************************************************************************************* */
 
 #endif /* INC_TIMER_UUT_H_ */
