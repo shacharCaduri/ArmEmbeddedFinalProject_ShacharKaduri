@@ -1,4 +1,12 @@
-#include "../../UUT/Inc/MAIN_UUT.h"
+#include "../../UUT/Inc/ExtraTools.h"
+#include <stdio.h>
+
+/**
+ * @brief hold test status for the test, this will be send
+ * 		  back to the server to indicate the client test perf
+ * 		  status. TEST_SUCCEED = 0x01 , TEST_FAILED = 0xff
+ */
+t_status test_status = INIT_TO_ZERO;
 
 /**@brief used for printf from the the terminal that connected to the port of the USB redirect printf*/
 int __io_putchar(int ch)

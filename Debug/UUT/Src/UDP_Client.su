@@ -1,4 +1,4 @@
-../UUT/Src/UDP_Client.c:32:6:udp_receive_callback	24	static
-../UUT/Src/UDP_Client.c:49:6:udpClient_send	24	static
-../UUT/Src/UDP_Client.c:71:6:UDP_Client_Init	24	static
-../UUT/Src/UDP_Client.c:112:6:buildResProtocol	16	static
+../UUT/Src/UDP_Client.c:31:6:udp_receive_callback	24	static
+../UUT/Src/UDP_Client.c:48:6:udpClient_send	24	static
+../UUT/Src/UDP_Client.c:70:6:UDP_Client_Init	24	static
+../UUT/Src/UDP_Client.c:111:6:buildResProtocol	16	static

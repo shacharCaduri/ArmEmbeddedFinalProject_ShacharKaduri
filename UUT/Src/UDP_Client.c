@@ -5,7 +5,6 @@
  *      Author: shachar-ubuntu
  */
 #include "../../UUT/Inc/UDP_Client.h"
-#include "../../UUT/Inc/MAIN_UUT.h"
 
 /**@brief the variable which will hold the packet to be constructed after received by the Ethernet*/
 pr_prtcl receivedPacketData = INIT_ALL_ZERO;
@@ -91,7 +90,7 @@ void UDP_Client_Init(void)
 	{
 		/* 2. Send message to server */
 		/* the first data to send via UDP*/
-		buildResProtocol(*(uint32_t*)"Test\r", *(uint8_t*)'\n');
+		buildResProtocol(FIRST_TEST_ID, TEST_SUCCEED);
 
 		udpClient_send(&sentPacketData,sizeof(sentPacketData));
 
@@ -107,9 +106,9 @@ void UDP_Client_Init(void)
 /**
  * @brief build resultProtocol structure variable (sentPacketData) to send via UDP
  * @param [in] test_id 			- the test identifier.
- * @param [in] is_test_succeed 	- the result of the test 0x01 if the passed successfully, 0xff otherwise.
+ * @param [in] is_test_succeed 	- the result of the test, TEST_SUCCEED 0x01 if the passed successfully, TEST_FAILED 0xff otherwise.
  */
-void buildResProtocol(uint32_t test_id, uint8_t is_test_succeed)
+void buildResProtocol(uint32_t test_id, t_status is_test_succeed)
 {
 	sentPacketData.testId = test_id;
 	sentPacketData.testResult = is_test_succeed;

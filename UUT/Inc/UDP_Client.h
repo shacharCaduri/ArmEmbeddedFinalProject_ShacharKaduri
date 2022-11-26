@@ -12,6 +12,7 @@
 #include "udp.h"
 #include "string.h"
 #include "../../UUT/Inc/ETH_GENERICS.h"
+#include "../../UUT/Inc/ExtraTools.h"
 
 /* ******************** Defines ****************************************************************************** */
 /**
@@ -100,9 +101,9 @@ void udpClient_send(res_prtcl *pdata, size_t data_size);
 /**
  * @brief build resultProtocol structure variable (sentPacketData) to send via UDP
  * @param [in] test_id 			- the test identifier.
- * @param [in] is_test_succeed 	- the result of the test 0x01 if the passed successfully, 0xff otherwise.
+ * @param [in] is_test_succeed 	- the result of the test, TEST_SUCCEED 0x01 if the passed successfully, TEST_FAILED 0xff otherwise.
  */
-void buildResProtocol(uint32_t test_id, uint8_t is_test_succeed);
+void buildResProtocol(uint32_t test_id, t_status is_test_succeed);
 /* ************************************************************************************************************* */
 
 #endif /* INC_UDP_CLIENT_H_ */

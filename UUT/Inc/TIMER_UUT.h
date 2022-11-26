@@ -9,6 +9,7 @@
 #define INC_TIMER_UUT_H_
 #include "main.h"
 #include "stm32f7xx_hal.h"
+#include "../../UUT/Inc/ExtraTools.h"
 
 /* ********************** Defines ************************************************************************ */
 /**@brief the clock frequency the basic timer uses to calculate the time*/
@@ -55,19 +56,17 @@ extern uint8_t timer_end;
 
 /* **************************** Functions **************************************************************** */
 /**
- * @fn uint8_t TIMER_UUT(uint32_t prescalar, uint32_t period, uint8_t iterations)
- * @brief initialize and start the timer with prescalar and period values
- * 		  so the user will decide the time where the timer elapsed, test if it
- * 		  is indeed working correctly if a the given time really passed.
- * 		  test the timer peripheral. this done by using delay which uses busy loop and count ticks
- * 		  after the interrupt timer started so the timer_end flag must be set before the delay ends
- * 		  otherwise, it is not working correctly.
- * @param 	prescalar		the prescalar value.
- * @param 	period			the period value.
+ * @fn 		uint8_t TIMER_UUT(uint32_t prescalar, uint32_t period, uint8_t iterations)
+ * @brief 	start the timer with prescalar and period values so the user will decide the time where the
+ * 		  	timer elapsed, test if it is indeed working correctly if a the given time really passed.
+* 		 	test the timer peripheral. this done by using delay which uses busy loop and count ticks
+* 		 	after the interrupt timer started so the timer_end flag must be set before the delay ends
+ * 		  	otherwise, it is not working correctly.
  * @param 	iterations		running the test number of iterations.
- * @return	running it number of iterations to if one of them fails return TEST_FAILED 0xff, otherwise TEST_SUCCEED 0x01
+ * @return	t_status		running it number of iterations to if one of them fails return TEST_FAILED 0xff,
+ * 							otherwise TEST_SUCCEED 0x01
  */
-uint8_t TIMER_UUT(/*uint32_t prescalar, uint32_t period,*/ uint8_t iterations);
+t_status TIMER_UUT(uint8_t iterations);
 /* ******************************************************************************************************* */
 
 #endif /* INC_TIMER_UUT_H_ */

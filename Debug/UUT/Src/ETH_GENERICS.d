@@ -71,7 +71,8 @@ UUT/Src/ETH_GENERICS.o: ../UUT/Src/ETH_GENERICS.c \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/ip.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h \
- ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h
+ ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h \
+ ../UUT/Src/../../UUT/Inc/../../UUT/Inc/ExtraTools.h
 ../UUT/Src/../../UUT/Inc/ETH_GENERICS.h:
 ../LWIP/App/lwip.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h:
@@ -147,3 +148,4 @@ UUT/Src/ETH_GENERICS.o: ../UUT/Src/ETH_GENERICS.c \
 ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h:
+../UUT/Src/../../UUT/Inc/../../UUT/Inc/ExtraTools.h:

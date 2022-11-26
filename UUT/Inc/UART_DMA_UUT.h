@@ -2,6 +2,7 @@
 #define UART_H_UART_H_UART_H
 #include "main.h"
 #include "stm32f7xx_hal.h"
+#include "../../UUT/Inc/ExtraTools.h"
 
 /* ***************************** Defines ********************************************** */
 /**
@@ -48,7 +49,7 @@ extern UART_HandleTypeDef huart6;
 
 /* ************************** Functions *********************************************** */
 /**
- * @fn 		uint8_t UART_DMA_UUT(const char*, const uint8_t)
+ * @fn 		t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
  * @brief	the UART under unit test, tests if bit pattern equals to the same data received after
  * 			completing a communication cycle (data sent as follows: DEVICE 1 -> DEVICE 0 -> DEVICE 1)
  * @example	DEVICE 1 transmit bit pattern "ASCII" to DEVICE 0 than the data received transmitted
@@ -63,6 +64,6 @@ extern UART_HandleTypeDef huart6;
  * @return number of iterations will be run, each iteration if bit pattern at start of the communication
  * 		   equals to the same as in the end RETURN 0xff TEST_FAILED, otherwise  0X01 TEST_SUCCEED.
  */
-uint8_t UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations);
+t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations);
 /* ************************************************************************************ */
 #endif //UART_H_UART_H_UART_H

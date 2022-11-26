@@ -9,6 +9,7 @@
 #define INC_ETH_GENERICS_H_
 #include <lwip.h>
 #include <udp.h>
+#include "../../UUT/Inc/ExtraTools.h"
 
 /* *********************** Defines *************************************************************************** */
 /**@brief define for the address of the generic data structure(linked list) holding all network interfaces*/
@@ -26,28 +27,22 @@
 /**@brief define, pasting the macro which converting the IP address to the ip_addr_t struct (uint32_t number)*/
 #define CONVERTED_DST_IP_ADDR(DSTIPADDRSTRUCT) IP_ADDR4(&((DSTIPADDRSTRUCT)), 192, 168, 1, 1)
 
-/**@brief magic number to initiate pointers/arrays with the {0}.*/
-#define INIT_ALL_ZERO {0}
-
-/**@brief magic number to initiate variable's values with 0.*/
-#define INIT_TO_ZERO 0
-
 /**@brief indicate a true value for if packet received flag*/
 #define PACKET_RECEIVED 1
 
 /**@brief indicate a false value for if packet received flag*/
 #define PACKET_NOT_RECEIVED 0
 
-/**@brief defines the max rx buffer possible size */
-#define MAX_RX_BUFFER_SIZE 262
+///**@brief defines the max rx buffer possible size */
+//#define MAX_RX_BUFFER_SIZE 262
 /* *********************************************************************************************************** */
 
 /* ************************************ Externs ************************************************************** */
 /**@brief Generic data structure(linked list) used for all lwIP network interfaces.*/
 extern struct netif gnetif;
 
-/**@brief the buffer to hold temporarily the data received by the Ethernet before building back*/
-extern char rxbuffer[MAX_RX_BUFFER_SIZE];
+///**@brief the buffer to hold temporarily the data received by the Ethernet before building back*/
+//extern char rxbuffer[MAX_RX_BUFFER_SIZE];
 /* ************************************************************************************************************* */
 
 #endif /* INC_ETH_GENERICS_H_ */

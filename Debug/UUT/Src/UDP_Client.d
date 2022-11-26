@@ -74,13 +74,8 @@ UUT/Src/UDP_Client.o: ../UUT/Src/UDP_Client.c \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h \
  ../UUT/Src/../../UUT/Inc/../../UUT/Inc/ETH_GENERICS.h \
- ../UUT/Src/../../UUT/Inc/MAIN_UUT.h \
- ../UUT/Src/../../UUT/Inc/../../UUT/Inc/ExtraTools.h \
- ../UUT/Src/../../UUT/Inc/../../UUT/Inc/I2C_DMA_UUT.h \
- ../UUT/Src/../../UUT/Inc/../../UUT/Inc/SPI_DMA_UUT.h \
- ../UUT/Src/../../UUT/Inc/../../UUT/Inc/TIMER_UUT.h \
- ../UUT/Src/../../UUT/Inc/../../UUT/Inc/UART_DMA_UUT.h \
- ../UUT/Src/../../UUT/Inc/../../UUT/Inc/UDP_Client.h
+ ../UUT/Src/../../UUT/Inc/../../UUT/Inc/../../UUT/Inc/ExtraTools.h \
+ ../UUT/Src/../../UUT/Inc/../../UUT/Inc/ExtraTools.h
 ../UUT/Src/../../UUT/Inc/UDP_Client.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
@@ -157,10 +152,5 @@ UUT/Src/UDP_Client.o: ../UUT/Src/UDP_Client.c \
 ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h:
 ../UUT/Src/../../UUT/Inc/../../UUT/Inc/ETH_GENERICS.h:
-../UUT/Src/../../UUT/Inc/MAIN_UUT.h:
+../UUT/Src/../../UUT/Inc/../../UUT/Inc/../../UUT/Inc/ExtraTools.h:
 ../UUT/Src/../../UUT/Inc/../../UUT/Inc/ExtraTools.h:
-../UUT/Src/../../UUT/Inc/../../UUT/Inc/I2C_DMA_UUT.h:
-../UUT/Src/../../UUT/Inc/../../UUT/Inc/SPI_DMA_UUT.h:
-../UUT/Src/../../UUT/Inc/../../UUT/Inc/TIMER_UUT.h:
-../UUT/Src/../../UUT/Inc/../../UUT/Inc/UART_DMA_UUT.h:
-../UUT/Src/../../UUT/Inc/../../UUT/Inc/UDP_Client.h:

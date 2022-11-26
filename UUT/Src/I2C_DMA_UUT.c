@@ -1,9 +1,8 @@
 #include "../../UUT/Inc/I2C_DMA_UUT.h"
-#include "../../UUT/Inc/MAIN_UUT.h"
 #include <string.h>
 
 /**
- * @fn 		uint8_t I2C_UUT_DMA(const uint8_t *bit_pattern, const uint8_t bit_pattern_length)
+ * @fn 		t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
  * @brief	the I2C under unit test, tests if bit pattern equals to the same data received after
  * 			completing a communication cycle (data sent as follows: Master -> Slave -> Master)
  * @example	Master transmit bit pattern "ASCII" to Slave than the data received transmitted
@@ -13,11 +12,11 @@
  *
  * @param 	bit_pattern 			the data to test the I2C on
  * @param 	bit_pattern_length		the data's length to test the I2C on
- * @param iterations			running tests number of iterations.
+ * @param 	iterations				running tests number of iterations.
  * @return number of iterations will be run, each iteration if bit pattern at start of the communication
  * 		   equals to the same as in the end RETURN 0xff TEST_FAILED, otherwise  0X01 TEST_SUCCEED.
  */
-uint8_t I2C_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
+t_status I2C_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
 {
 	/* define and declare local buffers for slave and master */
 	uint8_t local_buffer_slave[MAX_I2C_SLAVE_BUFFER_SIZE] = INIT_ALL_ZERO;

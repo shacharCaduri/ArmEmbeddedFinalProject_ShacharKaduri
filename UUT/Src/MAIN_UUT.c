@@ -1,11 +1,5 @@
 #include "../../UUT/Inc/MAIN_UUT.h"
 
-/**
- * @brief hold test status for the test, this will be send
- * back to the server to indicate the client test perf status
- */
-uint8_t test_status = INIT_TO_ZERO;
-
 /**@brief the main function to run the tests, the life of the program*/
 void UUT_main(void)
 {
@@ -26,13 +20,51 @@ void UUT_main(void)
 		sys_check_timeouts();
 		if(udp_packet_is_received == PACKET_RECEIVED)
 		{
-			test_status = (UART_DMA_UUT((uint8_t*)"ShacharIsTheKing\r\n", 18,5));
-			test_status = (I2C_UUT_DMA((uint8_t*)"ShacharIsTheKing\r\n", 18,5));
-			test_status = (SPI_UUT_DMA((uint8_t*)"ShacharIsTheKing\r\n", 18,5));
+			/* check if packet have valid values, if not, deleting the packet data and inform with relevant packet status */
+			/*
+			 * TODO:	packet_valid_status checkPacket(receivedPacket);
+			 * 			if(packet_valid_status != PACKET_STATUS_OK)
+			 * 			{
+			 * 				break;
+			 * 			}
+			 */
 
-			test_status = TIMER_UUT(/*7199,9999,*/2);
-			buildResProtocol(*(uint32_t*)"1523\n", TEST_SUCCEED);
+			switch(receivedPacketData.perfToTest)
+			{
+			case UART_PERIPHERAL:
+			{
+				test_status = UART_DMA_UUT(receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
+			}
+			break;
+			case I2C_PERIPHERAL:
+			{
+				test_status = I2C_UUT_DMA(receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
+			}
+			break;
+			case SPI_PERIPHERAL:
+			{
+				test_status = SPI_UUT_DMA(receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
+			}
+			break;
+			case TIMER_PERIPHERAL:
+			{
+				test_status = TIMER_UUT(receivedPacketData.iterations);
+			}
+			break;
+			case ADC_PERIPHERAL:
+			{
+				/* TODO: ADC_UUT_DMA(receivedPacketData.iterations); */
+			}
+			break;
+			}
+
+			/* building the result protocol struct with data: testId and status of the test */
+			buildResProtocol(receivedPacketData.testId, test_status);
+
+			/* send via UDP the packet to the server */
 			udpClient_send(&sentPacketData,sizeof(sentPacketData));
+
+			/* initializing the flag of packet received to be not received so only when a packet will be received some test will be performed */
 			udp_packet_is_received = PACKET_NOT_RECEIVED;
 		}
 	}
