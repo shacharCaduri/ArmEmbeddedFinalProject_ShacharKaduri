@@ -23,7 +23,6 @@ void UUT_main(void)
 		 * 			its inside the while(TRUE), e.g. life loop.
 		 */
 		ethernetif_input(GNETIF_ADDR);
-		/**@brief check connection timeouts*/
 		sys_check_timeouts();
 		if(udp_packet_is_received == PACKET_RECEIVED)
 		{

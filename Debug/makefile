@@ -71,8 +71,8 @@ all: main-build
 main-build: ArmEmbeddedFinalProject_ShacharKaduri.elf secondary-outputs
 
 # Tool invocations
-ArmEmbeddedFinalProject_ShacharKaduri.elf ArmEmbeddedFinalProject_ShacharKaduri.map: $(OBJS) $(USER_OBJS) /home/shachar-ubuntu/STM32CubeIDE/workspace_final_project_ArmEmbedded/ArmEmbeddedFinalProject_ShacharKaduri/STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ArmEmbeddedFinalProject_ShacharKaduri.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/shachar-ubuntu/STM32CubeIDE/workspace_final_project_ArmEmbedded/ArmEmbeddedFinalProject_ShacharKaduri/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ArmEmbeddedFinalProject_ShacharKaduri.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ArmEmbeddedFinalProject_ShacharKaduri.elf ArmEmbeddedFinalProject_ShacharKaduri.map: $(OBJS) $(USER_OBJS) /home/shachar-ubuntu/STM32CubeIDE/workspace_1.10.1/ArmEmbeddedFinalProject_ShacharKaduri/STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ArmEmbeddedFinalProject_ShacharKaduri.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/shachar-ubuntu/STM32CubeIDE/workspace_1.10.1/ArmEmbeddedFinalProject_ShacharKaduri/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ArmEmbeddedFinalProject_ShacharKaduri.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
