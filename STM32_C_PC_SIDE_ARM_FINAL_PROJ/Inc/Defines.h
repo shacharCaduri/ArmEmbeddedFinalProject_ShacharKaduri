@@ -5,6 +5,7 @@
 #define PORT                            58000
 #define TEST_FAILED                     0xff
 #define TEST_SUCCEED                    0x01
+#define LAST_ID_FILE_PATH               "./Rec/last_id.txt"
 #define TEST_RECORDS_PATH               "./Rec/test_records.rec"
 #define INIT_ALL_ZERO                   {0}
 #define INIT_TO_ZERO                    0
@@ -22,7 +23,8 @@
 #define YEAR_FIX_VALUE                  1900
 #define MONTHS_FIX_VALUE                1
 #define TEN_POW_THREE                   1000
-#define TEN_POW_NEG_SIX                 1e-6
-#define TEN_POW_NEG_NINE                1e-9
+#define TEN_POW_SIX                     1000000
+#define TEN_POW_NINE                    1000000000
+#define FIRST_ID                        1001
 
 #endif /* F12BF43E_EC71_4FF8_AE51_309462E48977 */

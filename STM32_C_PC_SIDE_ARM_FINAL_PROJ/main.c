@@ -10,7 +10,10 @@
 #include <time.h>
 #include "Inc/ProtocolStructurs.h"
 #include "Inc/Defines.h"
-#include "Inc/WriteRecords.h"
+#include "Inc/ReadWriteRecords.h"
+
+/** @brief global variable for test-id, always start from the last id there was */
+uint32_t TestID;
 
 /**
  * @name Driver code
@@ -31,6 +34,7 @@ int main()
     ssize_t n = INIT_TO_ZERO;
     int res = INIT_TO_ZERO; // for checking scanf results;
     int is_client_response = CLIENT_CANNOT_CONNECT;
+    TestID = ret_last_test_id();
     /*******************************************/
  
     // Creating socket file descriptor 
@@ -72,10 +76,8 @@ int main()
         if(is_client_response == CLIENT_RESPONDED_FIRST_TIME_OK)
         {
             clock_gettime(CLOCK_MONOTONIC, &end);
-            /* time in nano seconds */
-            test_duration = (TEN_POW_THREE*(double)(end.tv_sec) + TEN_POW_NEG_SIX*(double)(end.tv_nsec)) - (TEN_POW_THREE*(double)(start.tv_sec) + TEN_POW_NEG_SIX*(double)(start.tv_nsec));
-            /* turning back to seconds */
-            test_duration /= TEN_POW_NEG_NINE;
+            /* time in nano seconds turn into seconds */
+            test_duration = ((double)(end.tv_sec) + (double)(end.tv_nsec)/TEN_POW_NINE) - ((double)(start.tv_sec) + (double)(start.tv_nsec)/TEN_POW_NINE);
             write_rec(test_duration,&resPrtcl);
         }
        
@@ -88,22 +90,31 @@ int main()
         printf("Client said:\n\tTest ID: %u\n\tTest Result: %u\n", resPrtcl.testId, resPrtcl.testResult);
         printf("enter test parameters: ");
         memset(&test_protocol, INIT_TO_ZERO, sizeof(test_protocol));
-        res = scanf("%" SCNu32 "", &test_protocol.testId);
-        /* ending the program */
-        if (res == EOF)
-            break;
+        
+        test_protocol.testId = TestID;
+        update_last_test_id_file(TestID);
+        TestID++;
+
+        printf("enter peripheral to test:\n[1-Timer,2-UART,4-SPI,8-I2C,16-ADC]\n");
         res = scanf("%" SCNu8 "", &test_protocol.perfToTest);
         /* ending the program */
         if (res == EOF)
             break;
+
+        printf("enter number of times to do the test:\n");
         res = scanf("%" SCNu8 "", &test_protocol.iterations);
         /* ending the program */
         if (res == EOF)
             break;
+
+        printf("enter the length of the string to be sent:\n");
         res = scanf("%" SCNu8 "", &test_protocol.bitPatrnStrLen);
         /* ending the program */
         if (res == EOF)
             break;
+
+        printf("enter some string to test communication peripherals on,"
+        "and based on the length you wrote:\n");
         res = scanf("%s", test_protocol.bitPatrnStr);
         /* ending the program */
         if (res == EOF)
