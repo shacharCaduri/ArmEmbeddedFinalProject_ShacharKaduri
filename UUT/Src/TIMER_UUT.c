@@ -38,7 +38,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
  */
 t_status TIMER_UUT(uint8_t iterations)
 {
-	double timer_elaps_time = (double)(((*BASIC_TIMER1_HANDLE).Init.Prescaler+PRESCALAR_ADDED_VAL)*((*BASIC_TIMER1_HANDLE).Init.Period+PERIOD_ADDED_VAL))/SYS_CLK_FREQ;
+	/* in ms */
+	double timer_elaps_time = HAL_DELAY_TO_SEC_VAL*(double)(((*BASIC_TIMER1_HANDLE).Init.Prescaler+PRESCALAR_ADDED_VAL)*((*BASIC_TIMER1_HANDLE).Init.Period+PERIOD_ADDED_VAL))/TIM_CLK_FREQ;
 
 	/* test phase */
 	while(iterations)
@@ -47,7 +48,7 @@ t_status TIMER_UUT(uint8_t iterations)
 		HAL_TIM_Base_Start_IT(BASIC_TIMER1_HANDLE);
 
 		/* delay for checking the elapsing time of the timer. */
-		HAL_Delay(timer_elaps_time);
+		HAL_Delay(timer_elaps_time+TIM_DEVIATION_VAL);
 
 		if(timer_end != TIMER_END)
 		{

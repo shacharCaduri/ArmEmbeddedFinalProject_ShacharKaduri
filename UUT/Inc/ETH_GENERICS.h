@@ -40,9 +40,6 @@
 /* ************************************ Externs ************************************************************** */
 /**@brief Generic data structure(linked list) used for all lwIP network interfaces.*/
 extern struct netif gnetif;
-
-///**@brief the buffer to hold temporarily the data received by the Ethernet before building back*/
-//extern char rxbuffer[MAX_RX_BUFFER_SIZE];
 /* ************************************************************************************************************* */
 
 #endif /* INC_ETH_GENERICS_H_ */

@@ -21,7 +21,7 @@
  * @brief	hale delay for spi when running number of iterations, thus the continuous
  * 		 	transmit and receive will have enough time to update the buffers.
  */
-#define SPI_HAL_DELAY_2MS HAL_Delay(2);
+#define SPI_SYNC_TIME HAL_Delay(1);
 /* ************************************************************************************************** */
 
 /* ************************ Externs ***************************************************************** */
@@ -39,6 +39,15 @@ extern uint8_t slave_buffer[MAX_SPI_SLAVE_BUFFER_SIZE];
 /* ************************************************************************************************** */
 
 /* *********************** Functions **************************************************************** */
+/**
+ * @brief 	the SPI under unit testing function which perform the actual tests according to number of
+ * 			iterations, each iteration checks if the sent bit_pattern value equalt to the master buffer
+ * 			after sending back to the master
+ * @param bit_pattern
+ * @param bit_pattern_length
+ * @param iterations
+ * @return
+ */
 t_status SPI_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length,
 		uint8_t iterations);
 /* ************************************************************************************************** */

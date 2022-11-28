@@ -20,30 +20,21 @@ void UUT_main(void)
 		sys_check_timeouts();
 		if(udp_packet_is_received == PACKET_RECEIVED)
 		{
-			/* check if packet have valid values, if not, deleting the packet data and inform with relevant packet status */
-			/*
-			 * TODO:	packet_valid_status checkPacket(receivedPacket);
-			 * 			if(packet_valid_status != PACKET_STATUS_OK)
-			 * 			{
-			 * 				break;
-			 * 			}
-			 */
-
 			switch(receivedPacketData.perfToTest)
 			{
 			case UART_PERIPHERAL:
 			{
-				test_status = UART_DMA_UUT(receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
+				test_status = UART_UUT_DMA((uint8_t *)receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
 			}
 			break;
 			case I2C_PERIPHERAL:
 			{
-				test_status = I2C_UUT_DMA(receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
+				test_status = I2C_UUT_DMA((uint8_t *)receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
 			}
 			break;
 			case SPI_PERIPHERAL:
 			{
-				test_status = SPI_UUT_DMA(receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
+				test_status = SPI_UUT_DMA((uint8_t *)receivedPacketData.bitPatrnStr, receivedPacketData.bitPatrnStrLen, receivedPacketData.iterations);
 			}
 			break;
 			case TIMER_PERIPHERAL:
@@ -53,7 +44,13 @@ void UUT_main(void)
 			break;
 			case ADC_PERIPHERAL:
 			{
-				/* TODO: ADC_UUT_DMA(receivedPacketData.iterations); */
+				test_status = ADC_UUT_DMA(receivedPacketData.iterations);
+			}
+			break;
+			default:
+			{
+				/* no other protocol or peripheral defined */
+				test_status = TEST_FAILED;
 			}
 			break;
 			}

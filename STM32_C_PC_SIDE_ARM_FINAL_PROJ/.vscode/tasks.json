@@ -13,13 +13,13 @@
                 "-Wconversion",
                 "-Wshadow",
         
-                "-std=c99",
+                "-std=gnu99",
                 "-pedantic",
 
                 //"-Wno-unused-parameter",
 
-                // "${workspaceFolder}/*/*.c",
                 "${workspaceFolder}/*.c",
+                "${workspaceFolder}/Src/*.c",
 
                 "-o",
                 "${workspaceFolder}/program",

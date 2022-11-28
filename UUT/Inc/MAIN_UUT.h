@@ -12,6 +12,7 @@
 #include "../../UUT/Inc/TIMER_UUT.h"
 #include "../../UUT/Inc/UART_DMA_UUT.h"
 #include "../../UUT/Inc/UDP_Client.h"
+#include "../../UUT/Inc/ADC_DMA_UUT.h"
 
 /* ******************************** Main Function ************************************************************** */
 /**@brief the main function to run the tests, the life of the program*/

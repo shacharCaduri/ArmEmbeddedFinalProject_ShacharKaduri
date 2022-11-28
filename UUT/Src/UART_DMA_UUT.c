@@ -2,7 +2,7 @@
 #include <string.h>
 
 /**
- * @fn 		t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
+ * @fn 		t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
  * @brief	the UART under unit test, tests if bit pattern equals to the same data received after
  * 			completing a communication cycle (data sent as follows: DEVICE 1 -> DEVICE 0 -> DEVICE 1)
  * @example	DEVICE 1 transmit bit pattern "ASCII" to DEVICE 0 than the data received transmitted
@@ -17,7 +17,7 @@
  * @return number of iterations will be run, each iteration if bit pattern at start of the communication
  * 		   equals to the same as in the end RETURN 0xff TEST_FAILED, otherwise  0X01 TEST_SUCCEED.
  */
-t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
+t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
 {
 	/* define and declare local buffers for device 1 and device 0 */
 	uint8_t local_buffer_dev_1[MAX_UART_DEV1_BUFFER_SIZE] = INIT_ALL_ZERO;
@@ -45,7 +45,7 @@ t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t 
 		/* end commands DEVICE 1 -> DEVICE 0 */
 
 		/* Delay between DMA transmissions **too fast, data may be send back properly */
-		UART_HAL_DELAY_1MS;
+		UART_SYNC_TIME;
 
 		/* DEVICE 0 -> DEVICE 1 */
 		status = HAL_UART_Receive_DMA(UART_DEVICE_1, local_buffer_dev_1, bit_pattern_length);
@@ -64,7 +64,7 @@ t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t 
 		/* end commands DEVICE 0 -> DEVICE 1 */
 
 		/* Delay between DMA transmission to strcmp **too fast, data may not be send back properly */
-		UART_HAL_DELAY_1MS;
+		UART_SYNC_TIME;
 
 		/* compare the data results at the end of communication with data given by the functions parameters */
 		if(strcmp((char*)local_buffer_dev_1, (char*)bit_pattern)!=STRCMP_EQUALS)

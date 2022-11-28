@@ -5,6 +5,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../UUT/Src/ADC_DMA_UUT.c \
 ../UUT/Src/ETH_GENERICS.c \
 ../UUT/Src/ExtraTools.c \
 ../UUT/Src/I2C_DMA_UUT.c \
@@ -15,6 +16,7 @@ C_SRCS += \
 ../UUT/Src/UDP_Client.c 
 
 OBJS += \
+./UUT/Src/ADC_DMA_UUT.o \
 ./UUT/Src/ETH_GENERICS.o \
 ./UUT/Src/ExtraTools.o \
 ./UUT/Src/I2C_DMA_UUT.o \
@@ -25,6 +27,7 @@ OBJS += \
 ./UUT/Src/UDP_Client.o 
 
 C_DEPS += \
+./UUT/Src/ADC_DMA_UUT.d \
 ./UUT/Src/ETH_GENERICS.d \
 ./UUT/Src/ExtraTools.d \
 ./UUT/Src/I2C_DMA_UUT.d \
@@ -42,7 +45,7 @@ UUT/Src/%.o UUT/Src/%.su: ../UUT/Src/%.c UUT/Src/subdir.mk
 clean: clean-UUT-2f-Src
 
 clean-UUT-2f-Src:
-	-$(RM) ./UUT/Src/ETH_GENERICS.d ./UUT/Src/ETH_GENERICS.o ./UUT/Src/ETH_GENERICS.su ./UUT/Src/ExtraTools.d ./UUT/Src/ExtraTools.o ./UUT/Src/ExtraTools.su ./UUT/Src/I2C_DMA_UUT.d ./UUT/Src/I2C_DMA_UUT.o ./UUT/Src/I2C_DMA_UUT.su ./UUT/Src/MAIN_UUT.d ./UUT/Src/MAIN_UUT.o ./UUT/Src/MAIN_UUT.su ./UUT/Src/SPI_DMA_UUT.d ./UUT/Src/SPI_DMA_UUT.o ./UUT/Src/SPI_DMA_UUT.su ./UUT/Src/TIMER_UUT.d ./UUT/Src/TIMER_UUT.o ./UUT/Src/TIMER_UUT.su ./UUT/Src/UART_DMA_UUT.d ./UUT/Src/UART_DMA_UUT.o ./UUT/Src/UART_DMA_UUT.su ./UUT/Src/UDP_Client.d ./UUT/Src/UDP_Client.o ./UUT/Src/UDP_Client.su
+	-$(RM) ./UUT/Src/ADC_DMA_UUT.d ./UUT/Src/ADC_DMA_UUT.o ./UUT/Src/ADC_DMA_UUT.su ./UUT/Src/ETH_GENERICS.d ./UUT/Src/ETH_GENERICS.o ./UUT/Src/ETH_GENERICS.su ./UUT/Src/ExtraTools.d ./UUT/Src/ExtraTools.o ./UUT/Src/ExtraTools.su ./UUT/Src/I2C_DMA_UUT.d ./UUT/Src/I2C_DMA_UUT.o ./UUT/Src/I2C_DMA_UUT.su ./UUT/Src/MAIN_UUT.d ./UUT/Src/MAIN_UUT.o ./UUT/Src/MAIN_UUT.su ./UUT/Src/SPI_DMA_UUT.d ./UUT/Src/SPI_DMA_UUT.o ./UUT/Src/SPI_DMA_UUT.su ./UUT/Src/TIMER_UUT.d ./UUT/Src/TIMER_UUT.o ./UUT/Src/TIMER_UUT.su ./UUT/Src/UART_DMA_UUT.d ./UUT/Src/UART_DMA_UUT.o ./UUT/Src/UART_DMA_UUT.su ./UUT/Src/UDP_Client.d ./UUT/Src/UDP_Client.o ./UUT/Src/UDP_Client.su
 
 .PHONY: clean-UUT-2f-Src
 

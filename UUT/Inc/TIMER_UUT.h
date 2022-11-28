@@ -13,19 +13,13 @@
 
 /* ********************** Defines ************************************************************************ */
 /**@brief the clock frequency the basic timer uses to calculate the time*/
-#define SYS_CLK_FREQ 72000000
+#define TIM_CLK_FREQ 36000000
 
 /**@brief the added value in the calculation of the timer time elapsed of period register*/
 #define PERIOD_ADDED_VAL 1
 
 /**@brief the added value in the calculation of the timer time elapsed of prescalar register*/
 #define PRESCALAR_ADDED_VAL 1
-
-/**@brief user costum prescalar value*/
-#define USER_PRESCALAR	7199
-
-/**@brief user costum period value*/
-#define USER_PERIOD		9999
 
 /**@brief true magic number for timer end flag*/
 #define TIMER_END 1
@@ -39,8 +33,14 @@
  */
 #define BASIC_TIMER1_HANDLE &htim7
 
-/** @brief the define for the timer's value.*/
-#define BASIC_TIMER1 TIM7
+/**@brief value to turn time elaps which will be put in hal delay so the delay will be in seconds */
+#define HAL_DELAY_TO_SEC_VAL 1000
+
+/**
+ * @brief the value to be add to the hal delay so the timer flag surely will be set,
+ * little above the timer's total time, measured in ms
+ */
+#define TIM_DEVIATION_VAL 4
 /* ******************************************************************************************************* */
 
 /* **************************** Externs ****************************************************************** */

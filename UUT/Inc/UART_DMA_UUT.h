@@ -12,7 +12,7 @@
  * 		  data will be received. here 1 mili second is enough for this synchronization bewtween
  * 		  the 2 transmissions.
  */
-#define UART_HAL_DELAY_1MS HAL_Delay(1)
+#define UART_SYNC_TIME HAL_Delay(1)
 
 /**
  * @brief the buffer (received data) size
@@ -49,7 +49,7 @@ extern UART_HandleTypeDef huart6;
 
 /* ************************** Functions *********************************************** */
 /**
- * @fn 		t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
+ * @fn 		t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations)
  * @brief	the UART under unit test, tests if bit pattern equals to the same data received after
  * 			completing a communication cycle (data sent as follows: DEVICE 1 -> DEVICE 0 -> DEVICE 1)
  * @example	DEVICE 1 transmit bit pattern "ASCII" to DEVICE 0 than the data received transmitted
@@ -64,6 +64,6 @@ extern UART_HandleTypeDef huart6;
  * @return number of iterations will be run, each iteration if bit pattern at start of the communication
  * 		   equals to the same as in the end RETURN 0xff TEST_FAILED, otherwise  0X01 TEST_SUCCEED.
  */
-t_status UART_DMA_UUT(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations);
+t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t iterations);
 /* ************************************************************************************ */
 #endif //UART_H_UART_H_UART_H

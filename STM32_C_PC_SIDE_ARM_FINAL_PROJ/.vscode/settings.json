@@ -1,6 +1,13 @@
 {
     "files.associations": {
         "algorithm": "c",
-        "main.h": "c"
-    }
+        "main.h": "c",
+        "cstdio": "cpp",
+        "writerecords.h": "c",
+        "in.h": "c",
+        "measuretime.h": "c",
+        "stdlib.h": "c",
+        "time.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
