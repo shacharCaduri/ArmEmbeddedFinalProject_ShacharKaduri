@@ -7,7 +7,13 @@
         "in.h": "c",
         "measuretime.h": "c",
         "stdlib.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "defines.h": "c",
+        "stdbool.h": "c",
+        "mantests.h": "c",
+        "socket.h": "c",
+        "testsglobals.h": "c",
+        "readwriterecords.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

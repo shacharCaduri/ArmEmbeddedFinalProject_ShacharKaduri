@@ -1,0 +1,2 @@
+../UUT/Src/ADC_DMA_UUT.c:18:6:HAL_ADC_ConvCpltCallback	16	static
+../UUT/Src/ADC_DMA_UUT.c:36:10:ADC_UUT_DMA	24	static

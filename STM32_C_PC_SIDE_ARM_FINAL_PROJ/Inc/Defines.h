@@ -26,5 +26,6 @@
 #define TEN_POW_SIX                     1000000
 #define TEN_POW_NINE                    1000000000
 #define FIRST_ID                        1001
+#define RET_TO_MENU                     -1
 
 #endif /* F12BF43E_EC71_4FF8_AE51_309462E48977 */

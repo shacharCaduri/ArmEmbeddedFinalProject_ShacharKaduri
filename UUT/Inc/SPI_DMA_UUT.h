@@ -16,12 +16,6 @@
 
 /**@brief 	the address of the handle of the SPI device that receive*/
 #define SPI_SLAVE &hspi4
-
-/**
- * @brief	hale delay for spi when running number of iterations, thus the continuous
- * 		 	transmit and receive will have enough time to update the buffers.
- */
-#define SPI_SYNC_TIME HAL_Delay(1);
 /* ************************************************************************************************** */
 
 /* ************************ Externs ***************************************************************** */
