@@ -5,13 +5,6 @@ uint32_t TestID = INIT_TO_ZERO;
 
 void clean_buffer()
 {
-    int c = INIT_TO_ZERO;
-    while (c != '\n')
-    {
-        c = getchar();
-        if(c==EOF)
-        {
-            stdin->_IO_read_ptr = "\n";
-        }
-    }
+    int c;
+    while ((c = getchar()) != '\n');
 }

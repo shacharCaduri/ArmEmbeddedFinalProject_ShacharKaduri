@@ -7,6 +7,7 @@
 #define TEST_SUCCEED                    0x01
 #define LAST_ID_FILE_PATH               "./Rec/last_id.txt"
 #define TEST_RECORDS_PATH               "./Rec/test_records.rec"
+#define TESTS_FILE_PATH                  "./Rec/tests_to_do.tests"
 #define INIT_ALL_ZERO                   {0}
 #define INIT_TO_ZERO                    0
 #define MAX_BIT_PATTERN_LEN             255
@@ -27,5 +28,8 @@
 #define TEN_POW_NINE                    1000000000
 #define FIRST_ID                        1001
 #define RET_TO_MENU                     -1
+#define DONOT_CONTI_MAN_TESTS           2
+#define CONTI_MAN_TESTS                 1
+#define NUM_PRTCL_FIELDS                5
 
 #endif /* F12BF43E_EC71_4FF8_AE51_309462E48977 */

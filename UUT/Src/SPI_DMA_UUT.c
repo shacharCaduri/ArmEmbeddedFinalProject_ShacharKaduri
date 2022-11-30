@@ -49,6 +49,9 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 			return TEST_FAILED;
 		}
 
+		/* delay time between transmissions for buffers to be update */
+		SPI_SYNC_TIME;
+
 		/* SLAVE -> MASTER*/
 		status = HAL_SPI_TransmitReceive_DMA(SPI_SLAVE, slave_buffer, tmp_buf, bit_pattern_length);
 
@@ -65,6 +68,9 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 		{
 			return TEST_FAILED;
 		}
+
+		/* delay time between transmissions for buffers to be update */
+		SPI_SYNC_TIME;
 
 		/* end of iteration test if sent bit pattern is not equal to buffer at the end the peripheral not working correctly, test failed*/
 		if(strcmp((char*)master_buffer, (char*)bit_pattern)!=STRCMP_EQUALS)

@@ -16,6 +16,9 @@
 
 /**@brief 	the address of the handle of the SPI device that receive*/
 #define SPI_SLAVE &hspi4
+
+/**@brief sync time between transmissions uses hal delay */
+#define SPI_SYNC_TIME HAL_Delay(1)
 /* ************************************************************************************************** */
 
 /* ************************ Externs ***************************************************************** */

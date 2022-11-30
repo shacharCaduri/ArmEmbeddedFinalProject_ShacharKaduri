@@ -13,7 +13,11 @@
         "mantests.h": "c",
         "socket.h": "c",
         "testsglobals.h": "c",
-        "readwriterecords.h": "c"
+        "readwriterecords.h": "c",
+        "protocolstructurs.h": "c",
+        "autotests.h": "c",
+        "stdio.h": "c",
+        "cjson.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
