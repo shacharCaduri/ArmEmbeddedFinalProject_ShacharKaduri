@@ -32,9 +32,6 @@
 
 /**@brief indicate a false value for if packet received flag*/
 #define PACKET_NOT_RECEIVED 0
-
-///**@brief defines the max rx buffer possible size */
-//#define MAX_RX_BUFFER_SIZE 262
 /* *********************************************************************************************************** */
 
 /* ************************************ Externs ************************************************************** */

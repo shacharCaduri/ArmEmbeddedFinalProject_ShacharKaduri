@@ -22,7 +22,7 @@ t_status I2C_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t i
 	uint8_t local_buffer_slave[MAX_I2C_SLAVE_BUFFER_SIZE] = INIT_ALL_ZERO;
 	uint8_t local_buffer_master[MAX_I2C_MASTER_BUFFER_SIZE] = INIT_ALL_ZERO;
 
-	/* check status of receive transmit, error detection. (maby wire disconnected) */
+	/* check status of receive transmit, error detection. */
 	HAL_StatusTypeDef status = HAL_ERROR;
 
 	while(iterations)

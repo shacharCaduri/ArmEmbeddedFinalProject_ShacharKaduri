@@ -23,7 +23,7 @@ t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t 
 	uint8_t local_buffer_dev_1[MAX_UART_DEV1_BUFFER_SIZE] = INIT_ALL_ZERO;
 	uint8_t local_buffer_dev_0[MAX_UART_DEV0_BUFFER_SIZE] = INIT_ALL_ZERO;
 
-	/* check status of receive transmit, error detection. (maby wire disconnected) */
+	/* check status of receive transmit, error detection.*/
 	HAL_StatusTypeDef status = HAL_ERROR;
 
 	while(iterations)

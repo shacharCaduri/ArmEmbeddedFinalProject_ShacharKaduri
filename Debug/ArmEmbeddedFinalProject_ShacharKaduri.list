@@ -60999,7 +60999,7 @@ t_status I2C_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t i
  80169d8:	4618      	mov	r0, r3
  80169da:	f000 fbed 	bl	80171b8 <memset>
 
-	/* check status of receive transmit, error detection. (maby wire disconnected) */
+	/* check status of receive transmit, error detection. */
 	HAL_StatusTypeDef status = HAL_ERROR;
  80169de:	2301      	movs	r3, #1
  80169e0:	f887 3207 	strb.w	r3, [r7, #519]	; 0x207
@@ -61361,8 +61361,7 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
  8016c4a:	f887 3107 	strb.w	r3, [r7, #263]	; 0x107
 
 	/*
-	 * temporary buffer to use when transmitting and receiving at the same time,
-	 * thus, prevent race conditions.
+	 * temporary buffer to use when transmitting and receiving at the same time.
 	 */
 	uint8_t tmp_buf[MAX_SPI_MASTER_BUFFER_SIZE] = INIT_ALL_ZERO;
  8016c4e:	f507 7384 	add.w	r3, r7, #264	; 0x108
@@ -61403,7 +61402,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
  8016c94:	4603      	mov	r3, r0
  8016c96:	f887 3107 	strb.w	r3, [r7, #263]	; 0x107
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
  8016c9a:	f897 3107 	ldrb.w	r3, [r7, #263]	; 0x107
  8016c9e:	2b00      	cmp	r3, #0
@@ -61428,7 +61426,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
  8016cc6:	4603      	mov	r3, r0
  8016cc8:	f887 3107 	strb.w	r3, [r7, #263]	; 0x107
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
  8016ccc:	f897 3107 	ldrb.w	r3, [r7, #263]	; 0x107
  8016cd0:	2b00      	cmp	r3, #0
@@ -61457,7 +61454,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
  8016cf6:	4603      	mov	r3, r0
  8016cf8:	f887 3107 	strb.w	r3, [r7, #263]	; 0x107
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
  8016cfc:	f897 3107 	ldrb.w	r3, [r7, #263]	; 0x107
  8016d00:	2b00      	cmp	r3, #0
@@ -61480,7 +61476,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
  8016d20:	4603      	mov	r3, r0
  8016d22:	f887 3107 	strb.w	r3, [r7, #263]	; 0x107
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
  8016d26:	f897 3107 	ldrb.w	r3, [r7, #263]	; 0x107
  8016d2a:	2b00      	cmp	r3, #0
@@ -61736,7 +61731,7 @@ t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t 
  8016ed8:	4618      	mov	r0, r3
  8016eda:	f000 f96d 	bl	80171b8 <memset>
 
-	/* check status of receive transmit, error detection. (maby wire disconnected) */
+	/* check status of receive transmit, error detection.*/
 	HAL_StatusTypeDef status = HAL_ERROR;
  8016ede:	2301      	movs	r3, #1
  8016ee0:	f887 3207 	strb.w	r3, [r7, #519]	; 0x207

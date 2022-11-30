@@ -21,8 +21,7 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 	HAL_StatusTypeDef status = HAL_ERROR;
 
 	/*
-	 * temporary buffer to use when transmitting and receiving at the same time,
-	 * thus, prevent race conditions.
+	 * temporary buffer to use when transmitting and receiving at the same time.
 	 */
 	uint8_t tmp_buf[MAX_SPI_MASTER_BUFFER_SIZE] = INIT_ALL_ZERO;
 
@@ -35,7 +34,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 		/* MASTER -> SLAVE */
 		status = HAL_SPI_TransmitReceive_DMA(SPI_SLAVE, tmp_buf, slave_buffer, bit_pattern_length);
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
 		{
 			return TEST_FAILED;
@@ -43,7 +41,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 
 		status = HAL_SPI_TransmitReceive_DMA(SPI_MASTER, bit_pattern, tmp_buf, bit_pattern_length);
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
 		{
 			return TEST_FAILED;
@@ -55,7 +52,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 		/* SLAVE -> MASTER*/
 		status = HAL_SPI_TransmitReceive_DMA(SPI_SLAVE, slave_buffer, tmp_buf, bit_pattern_length);
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
 		{
 			return TEST_FAILED;
@@ -63,7 +59,6 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 
 		status = HAL_SPI_TransmitReceive_DMA(SPI_MASTER, tmp_buf, master_buffer, bit_pattern_length);
 
-		/* if something went wrong: wire/s disconnected, busy (still transmitting), noise on the line.. */
 		if(status != HAL_OK)
 		{
 			return TEST_FAILED;
