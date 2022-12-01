@@ -11,10 +11,6 @@ uint8_t slave_buffer[MAX_SPI_SLAVE_BUFFER_SIZE] = INIT_ALL_ZERO;
  * @brief 	the SPI under unit testing function which perform the actual tests according to number of
  * 			iterations, each iteration checks if the sent bit_pattern value equalt to the master buffer
  * 			after sending back to the master
- * @param bit_pattern
- * @param bit_pattern_length
- * @param iterations
- * @return
  */
 t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t iterations)
 {

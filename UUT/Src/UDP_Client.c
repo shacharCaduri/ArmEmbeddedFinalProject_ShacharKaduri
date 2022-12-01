@@ -19,14 +19,7 @@ uint8_t udp_packet_is_received = INIT_TO_ZERO;
 static struct udp_pcb *my_upcb = INIT_ALL_ZERO;
 
 /**
-* @fn 			void udp_recv_callback(void*, struct udp_pcb*, struct pbuf*, const ip_addr_t*, u16_t)
 * @brief 		callback function when receiving an Ethernet packet via UDP Protocol
-*
-* @param arg	user supplied argument (udp_pcb.recv_arg)
-* @param pcb	the udp_pcb which received the data
-* @param p		the packet buffer that was received
-* @param addr	the remote IP address from which the packet was received
-* @param port	the remote port from which the packet was received
 */
 void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
@@ -40,10 +33,7 @@ void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const
 }
 
 /**
- * @brief the data to send back with the UDP protocol
- * @param [in] pdata	 - pointer to the resultProtocol structure variable (sentPacketData)
- * 		 			 	   to send to the server via UDP
- * @param [in] data_size - the size of the data to send back to the server via UDP.
+ * @brief the data to send back with the UDP protocol.
  */
 void udpClient_send(res_prtcl *pdata, size_t data_size)
 {
@@ -64,7 +54,6 @@ void udpClient_send(res_prtcl *pdata, size_t data_size)
 }
 
 /**
- * @fn 		void UDP_Client_Init(void)
  * @brief	initialize a UDP connection
  */
 void UDP_Client_Init(void)
@@ -105,8 +94,6 @@ void UDP_Client_Init(void)
 
 /**
  * @brief build resultProtocol structure variable (sentPacketData) to send via UDP
- * @param [in] test_id 			- the test identifier.
- * @param [in] is_test_succeed 	- the result of the test, TEST_SUCCEED 0x01 if the passed successfully, TEST_FAILED 0xff otherwise.
  */
 void buildResProtocol(uint32_t test_id, t_status is_test_succeed)
 {

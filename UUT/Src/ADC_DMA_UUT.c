@@ -25,13 +25,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 }
 
 /**
- * @name	t_status ADC_UUT_DMA(uint8_t iterations)
  * @brief	the adc under unit tests function, the funtion checks if the adc value got is the expected value.
  * 			the expected value is according to which the ADC peripheral connected to.
- * @param 	iterations	the number of times to check this test.
- * @return	return TEST_SUCCEED 0x01 if test pass, otherwise TEST_FAILED 0xff. if one of the iterations fails
- * 			the whole test fails and returning TEST_FAILED if all tests iterations passed at the end return
- * 			TEST_SUCCEED 0x01.
  */
 t_status ADC_UUT_DMA(uint8_t iterations)
 {
