@@ -48,11 +48,12 @@ t_status ADC_UUT_DMA(uint8_t iterations)
 			return TEST_FAILED;
 		}
 
-		/* the time delay needed for the flag to be synchronize with the right value. (i.e. ADC_FLAG_SET) */
-		ADC_SYNC_TIME;
-
-		/* if callback is set the ADC finished need to check the value against expeceted */
-		if(adc_callback_flag == ADC_FLAG_SET)
+		/* check callback complete flag */
+		if(wait_till_flag_set_or_timeout(&adc_callback_flag, ADC_TIMEOUT, ADC_DMA_TIME) != WAIT_STATUS_OK)
+		{
+			return TEST_FAILED;
+		}
+		else
 		{
 			/* check if ADC expected value is between the deviation allowed ADC_VAL +/- DEVIATION if it is continue to next iteration */
 			if(! (ADC_EXPECTED_VALUE - ADC_DEVIATION <= adc_value && adc_value <= ADC_EXPECTED_VALUE + ADC_DEVIATION ))
@@ -63,8 +64,8 @@ t_status ADC_UUT_DMA(uint8_t iterations)
 			}
 			/* reset the callback flag */
 			adc_callback_flag = ADC_FLAG_RESET;
-		}
 
+		}
 
 		--iterations;
 	}

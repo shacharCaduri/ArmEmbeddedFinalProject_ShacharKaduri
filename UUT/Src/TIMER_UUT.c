@@ -19,49 +19,74 @@ uint8_t timer_end = TIMER_NOT_END;
  */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if(htim == BASIC_TIMER1_HANDLE)
+	if(htim->Instance == TIMER1_HANDLE->Instance)
 	{
+
 		timer_end = TIMER_END;
 	}
 }
 
+
 /**
  * @brief 	start the timer with prescalar and period values so the user will decide the time where the
  * 		  	timer elapsed, test if it is indeed working correctly if a the given time really passed.
- * 		 	test the timer peripheral. this done by using delay which uses busy loop and count ticks
- * 		 	after the interrupt timer started so the timer_end flag must be set before the delay ends
- * 		  	otherwise, it is not working correctly.
+ * 		 	test the timer peripheral.
  */
 t_status TIMER_UUT(uint8_t iterations)
 {
 	/* in ms */
-	double timer_elaps_time = HAL_DELAY_TO_SEC_VAL*(double)(((*BASIC_TIMER1_HANDLE).Init.Prescaler+PRESCALAR_ADDED_VAL)*((*BASIC_TIMER1_HANDLE).Init.Period+PERIOD_ADDED_VAL))/TIM_CLK_FREQ;
+	double timer_elaps_time = TO_MILLISECONDS*(double)(((*TIMER1_HANDLE).Init.Prescaler+PRESCALAR_ADDED_VAL)*
+			((*TIMER1_HANDLE).Init.Period+PERIOD_ADDED_VAL))/TIM_CLK_FREQ;
+
+	/* get the tick value in milliseconds at the start of our timer */
+	uint32_t start = INIT_TO_ZERO;
+
+	/* get the tick value in milliseconds at the end of our timer */
+	uint32_t end = INIT_TO_ZERO;
 
 	/* test phase */
 	while(iterations)
 	{
-		/* start timer*/
-		HAL_TIM_Base_Start_IT(BASIC_TIMER1_HANDLE);
+		start = HAL_GetTick();
 
-		/* delay for checking the elapsing time of the timer. */
-		HAL_Delay(timer_elaps_time+TIM_DEVIATION_VAL);
+		/* enable timer interrupt to start (as time defined) */
+		HAL_TIM_Base_Start_IT(TIMER1_HANDLE);
+		timer_end = TIMER_NOT_END;
 
-		if(timer_end != TIMER_END)
+		/* wait for flag to be turn on */
+		while(timer_end != TIMER_END)
 		{
-			/* stops the timer */
-			HAL_TIM_Base_Stop_IT(BASIC_TIMER1_HANDLE);
 
-			timer_end = TIMER_NOT_END;
+			/* ******** code to stop it from running forever in case it would happen ******** */
+			end = HAL_GetTick();
+			if((end-start) > (timer_elaps_time+TIM_DEVIATION_VAL))
+			{
+				/* stops the timer */
+				HAL_TIM_Base_Stop_IT(TIMER1_HANDLE);
 
+				timer_end = TIMER_NOT_END;
+
+				return TEST_FAILED;
+			}
+			/* ****************************************************************************** */
+		}
+		/* stops the timer */
+		HAL_TIM_Base_Stop_IT(TIMER1_HANDLE);
+		timer_end = TIMER_NOT_END;
+
+		end = HAL_GetTick();
+
+		if(timer_elaps_time-TIM_DEVIATION_VAL <= end-start && end-start <= timer_elaps_time + TIM_DEVIATION_VAL)
+		{
+			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
+			--iterations;
+			continue;
+		}
+		else {
 			return TEST_FAILED;
 		}
 
-		/* stops the timer */
-		HAL_TIM_Base_Stop_IT(BASIC_TIMER1_HANDLE);
-
-		timer_end = TIMER_NOT_END;
-
-		--iterations;
 	}
+
 	return TEST_SUCCEED;
 }

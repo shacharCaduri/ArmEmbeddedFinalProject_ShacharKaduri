@@ -24,7 +24,7 @@ static struct udp_pcb *my_upcb = INIT_ALL_ZERO;
 void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
 	/* Copy the data from the pbuf */
-	memcpy((char*)&receivedPacketData, (char *)p->payload, p->len);
+	memcpy((char*)&receivedPacketData, (char *)p->payload, sizeof(receivedPacketData));
 
 	udp_packet_is_received = PACKET_RECEIVED;
 

@@ -18,25 +18,25 @@
 #define MAX_I2C_MASTER_BUFFER_SIZE 255
 
 /**
- * @brief Hal delay for purpose of timing between transmit receive Master -> Slave
- * 		  to  Slave -> Master (back), otherwise the times will be 2 short between the
- * 		  2 send and receive and it can affect the reliability of the communication, maby no
- * 		  data will be received. here 2 milliseconds is enough for this synchronization bewtween
- * 		  the 2 transmissions.
+ * @brief 	timeout before flag set, maximum waiting time in milliseconds
+ * 			for flag to be raised.
  */
-#define I2C_HAL_DELAY_2MS HAL_Delay(2)
+#define I2C_TIMEOUT 50
+
+/**@brief time in milliseconds to wait for DMA to finish */
+#define I2C_DMA_TIME 2
 
 /**
  * @def   USER_I2C_SLAVE_ADDRESS
  * @brief the user costume define slave address
  */
-#define I2C_SLAVE_ADDRESS 15
+#define I2C_SLAVE_ADDRESS 30
 
 /**@brief the address of the handle of the I2C Master device*/
-#define I2C_MASTER &hi2c2
+#define I2C_MASTER (&hi2c2)
 
 /**@brief the address of the handle of the I2C Slave device*/
-#define I2C_SLAVE &hi2c1
+#define I2C_SLAVE (&hi2c1)
 /* ************************************************************************************ */
 
 /* ***************************** Externs ********************************************** */
@@ -45,6 +45,12 @@ extern I2C_HandleTypeDef hi2c1;
 
 /**@brief the handle of i2c Slave*/
 extern I2C_HandleTypeDef hi2c2;
+
+/**@brief buffer for slave device for receiving data */
+extern uint8_t i2c_buffer_slave[MAX_I2C_SLAVE_BUFFER_SIZE];
+
+/**@brief buffer for master device for receiving data */
+extern uint8_t i2c_buffer_master[MAX_I2C_MASTER_BUFFER_SIZE];
 /* ************************************************************************************ */
 
 /* ******************************* Functions ****************************************** */

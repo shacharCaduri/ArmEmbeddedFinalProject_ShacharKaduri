@@ -5,34 +5,23 @@
 #include "../../UUT/Inc/ExtraTools.h"
 
 /* ***************************** Defines ********************************************** */
-/**
- * @brief Hal delay for purpose of timing between transmit receive Device 1 -> Device 0
- * 		  to  Device 0 -> Device 1 (back), otherwise the times will be 2 short between the
- * 		  2 send and receive and it can affect the reliability of the communication, maby no
- * 		  data will be received. here 1 mili second is enough for this synchronization bewtween
- * 		  the 2 transmissions.
- */
-#define UART_SYNC_TIME HAL_Delay(1)
+/**@brief timeout if flag is not set until this time over */
+#define UART_TIMEOUT 50
 
-/**
- * @brief the buffer (received data) size
- */
+/**@brief time for dma to finish */
+#define UART_DMA_TIME 1
+
+/**@brief the buffer (received data) size*/
 #define MAX_UART_DEV0_BUFFER_SIZE 255
 
-/**
- * @brief the buffer (received data) size
- */
+/**@brief the buffer (received data) size*/
 #define MAX_UART_DEV1_BUFFER_SIZE 255
 
-/**
- * @brief the address of the handle of some UART device
- */
-#define UART_DEVICE_1 &huart4
+/**@brief the address of the handle of some UART device*/
+#define UART_DEVICE_1 (&huart4)
 
-/**
- * @brief the address of the handle of some UART device
- */
-#define UART_DEVICE_0 &huart6
+/**@brief the address of the handle of some UART device*/
+#define UART_DEVICE_0 (&huart6)
 /* ************************************************************************************ */
 
 /* ************************ Externs *************************************************** */
@@ -45,6 +34,12 @@ extern UART_HandleTypeDef huart4;
  * @brief the handle of some UART device
  */
 extern UART_HandleTypeDef huart6;
+
+/**@brief buffer for uart device 1 for receiving data */
+extern uint8_t buffer_dev_1[MAX_UART_DEV1_BUFFER_SIZE];
+
+/**@brief buffer for uart device 0 for receiving data */
+extern uint8_t buffer_dev_0[MAX_UART_DEV0_BUFFER_SIZE];
 /* ************************************************************************************ */
 
 /* ************************** Functions *********************************************** */

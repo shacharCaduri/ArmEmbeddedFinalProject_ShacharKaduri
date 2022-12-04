@@ -33,11 +33,14 @@
 /**@brief the ADC value which state which ADC peripheral is it in the start ADC function */
 #define ADC_TO_TEST ADC1
 
-/**@brief the synchronization needed for the ADC flag to be set so the CPU will check it and it'll be SET */
-#define ADC_SYNC_TIME HAL_Delay(0.1)
-
 /**@brief define the number samples of the data until returned from ADC (callback function) */
 #define ADC_NUM_OF_SAMPLES 1
+
+/**@brief ADC time for dma to finish */
+#define ADC_DMA_TIME 1
+
+/**@brief ADC maximum time to wait for flag to raise */
+#define ADC_TIMEOUT 50
 /* ******************************************************************************************************* */
 
 /* ****************************** Externs **************************************************************** */

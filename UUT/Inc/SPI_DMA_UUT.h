@@ -12,13 +12,16 @@
 #define MAX_SPI_MASTER_BUFFER_SIZE 255
 
 /**@brief 	the address of the handle of the SPI device that transmit*/
-#define SPI_MASTER &hspi1
+#define SPI_MASTER (&hspi1)
 
 /**@brief 	the address of the handle of the SPI device that receive*/
-#define SPI_SLAVE &hspi4
+#define SPI_SLAVE (&hspi4)
 
-/**@brief sync time between transmissions uses hal delay */
-#define SPI_SYNC_TIME HAL_Delay(1)
+/**@brief timeout (maximum time) in milliseconds to check callback flag */
+#define SPI_TIMEOUT 50
+
+/**@brief the time to wait for DMA to finish */
+#define SPI_DMA_TIME 1
 /* ************************************************************************************************** */
 
 /* ************************ Externs ***************************************************************** */
