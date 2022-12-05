@@ -9,7 +9,7 @@
 #define UART_TIMEOUT 50
 
 /**@brief time for dma to finish */
-#define UART_DMA_TIME 1
+#define UART_DMA_TIME 10
 
 /**@brief the buffer (received data) size*/
 #define MAX_UART_DEV0_BUFFER_SIZE 255

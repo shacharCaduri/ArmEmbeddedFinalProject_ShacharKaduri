@@ -57,7 +57,7 @@ void print_msg(const uint8_t* msg)
 }
 
 /**@brief	general function for checking flag of some interrupt driven function in a given maximum waiting time. */
-WaitFlag_Status wait_till_flag_set_or_timeout(uint8_t* flag, uint32_t timeout, uint32_t dma_wait_time)
+WaitFlag_Status wait_till_flag_set_or_timeout(uint8_t isADC, DMA_HandleTypeDef *hdma, uint8_t* flag, uint32_t timeout, uint32_t dma_wait_time)
 {
 	uint32_t start = HAL_GetTick();
 
@@ -70,8 +70,22 @@ WaitFlag_Status wait_till_flag_set_or_timeout(uint8_t* flag, uint32_t timeout, u
 	/* reset the flag */
 	*flag = CALLBACK_FLAG_RESET;
 
+
 	/* ********** waiting for dma to finish **************** */
-	HAL_Delay(dma_wait_time);
+	if(!isADC)
+	{
+		start = HAL_GetTick();
+		while(__HAL_DMA_GET_IT_SOURCE(hdma, DMA_IT_TC) != RESET)
+		{
+			if((HAL_GetTick()-start) > dma_wait_time)
+				return WAIT_STATUS_TIMEOUT;
+		}
+	}
+	else
+	{
+		//for adc
+		HAL_Delay(dma_wait_time);
+	}
 	/* ***************************************************** */
 
 	return WAIT_STATUS_OK;

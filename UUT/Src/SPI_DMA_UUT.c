@@ -63,7 +63,7 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 		}
 
 		/* check callback complete flag */
-		if(wait_till_flag_set_or_timeout(&spi_slave_cplt_callback_flag, SPI_TIMEOUT, SPI_DMA_TIME) != WAIT_STATUS_OK)
+		if(wait_till_flag_set_or_timeout(NOT_ADC, SPI_SLAVE->hdmarx, &spi_slave_cplt_callback_flag, SPI_TIMEOUT, SPI_DMA_TIME) != WAIT_STATUS_OK)
 		{
 			return TEST_FAILED;
 		}
@@ -84,7 +84,7 @@ t_status SPI_UUT_DMA( uint8_t *bit_pattern,  uint8_t bit_pattern_length, uint8_t
 		}
 
 		/* check callback complete flag */
-		if(wait_till_flag_set_or_timeout(&spi_master_cplt_callback_flag, SPI_TIMEOUT, SPI_DMA_TIME) != WAIT_STATUS_OK)
+		if(wait_till_flag_set_or_timeout(NOT_ADC,SPI_MASTER->hdmarx, &spi_master_cplt_callback_flag, SPI_TIMEOUT, SPI_DMA_TIME) != WAIT_STATUS_OK)
 		{
 			return TEST_FAILED;
 		}

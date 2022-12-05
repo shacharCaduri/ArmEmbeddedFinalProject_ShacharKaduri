@@ -34,6 +34,12 @@
 
 /**@brief magic number indicate callback flag is not set */
 #define CALLBACK_FLAG_RESET 	0
+
+/**@brief for checking if is ADC*/
+#define IS_ADC	1
+
+/**@brief for checking if is ADC*/
+#define NOT_ADC 0
 /* *********************************************************************************************************** */
 
 /* ******************************* Structures Enumurators Typedef  ******************************************* */
@@ -82,12 +88,14 @@ void print_msg(const uint8_t* msg);
 
 /**
  * @brief	general function for checking flag of some interrupt driven function in a given maximum waiting time.
+ * @param dma_handle	[in]	the dma handle to check for finish flag
  * @param flag			[in]	the flag to check.
  * @param timeout		[in]	maximum waiting time (timeout) in case flag is not set.
  * @param dma_wait_time [in]	time for dma to wait to finish.
+ * @param	isADC 		[in]	check if adc do not do need dma time wait.
  * @return	if all is ok flag is set and WAIT_STATUS_OK will be returned, otherwise timeout over
  * 			and WAIT_STATUS_TIMEOUT will be returned.
  */
-WaitFlag_Status wait_till_flag_set_or_timeout(uint8_t* flag, uint32_t timeout, uint32_t dma_wait_time);
+WaitFlag_Status wait_till_flag_set_or_timeout(uint8_t isADC, DMA_HandleTypeDef *hdma, uint8_t* flag, uint32_t timeout, uint32_t dma_wait_time);
 /* ************************************************************************************************************ */
 #endif /* INC_EXTRATOOLS_H_ */

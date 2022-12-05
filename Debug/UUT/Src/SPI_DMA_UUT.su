@@ -1,0 +1,2 @@
+../UUT/Src/SPI_DMA_UUT.c:17:6:HAL_SPI_TxRxCpltCallback	16	static
+../UUT/Src/SPI_DMA_UUT.c:35:10:SPI_UUT_DMA	280	static

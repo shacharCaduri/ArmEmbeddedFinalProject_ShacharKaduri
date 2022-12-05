@@ -24,7 +24,7 @@
 #define I2C_TIMEOUT 50
 
 /**@brief time in milliseconds to wait for DMA to finish */
-#define I2C_DMA_TIME 2
+#define I2C_DMA_TIME 20
 
 /**
  * @def   USER_I2C_SLAVE_ADDRESS

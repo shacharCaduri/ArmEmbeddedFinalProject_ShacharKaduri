@@ -49,7 +49,7 @@ t_status ADC_UUT_DMA(uint8_t iterations)
 		}
 
 		/* check callback complete flag */
-		if(wait_till_flag_set_or_timeout(&adc_callback_flag, ADC_TIMEOUT, ADC_DMA_TIME) != WAIT_STATUS_OK)
+		if(wait_till_flag_set_or_timeout(IS_ADC,ADC_HANDLE_ADDR->DMA_Handle, &adc_callback_flag, ADC_TIMEOUT, ADC_DMA_TIME) != WAIT_STATUS_OK)
 		{
 			return TEST_FAILED;
 		}

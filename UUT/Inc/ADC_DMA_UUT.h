@@ -28,7 +28,7 @@
 #define ADC_FLAG_SET 1
 
 /**@brief the handle address of the the ADC peripheral. */
-#define ADC_HANDLE_ADDR &hadc1
+#define ADC_HANDLE_ADDR (&hadc1)
 
 /**@brief the ADC value which state which ADC peripheral is it in the start ADC function */
 #define ADC_TO_TEST ADC1
@@ -37,7 +37,7 @@
 #define ADC_NUM_OF_SAMPLES 1
 
 /**@brief ADC time for dma to finish */
-#define ADC_DMA_TIME 1
+#define ADC_DMA_TIME 0
 
 /**@brief ADC maximum time to wait for flag to raise */
 #define ADC_TIMEOUT 50

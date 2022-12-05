@@ -54,7 +54,7 @@ t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t 
 		/* end commands DEVICE 1 -> DEVICE 0 */
 
 		/* check callback complete flag */
-		if(wait_till_flag_set_or_timeout(&device0_rx_cplt_flag, UART_TIMEOUT, UART_DMA_TIME) != WAIT_STATUS_OK)
+		if(wait_till_flag_set_or_timeout(NOT_ADC,UART_DEVICE_0->hdmarx, &device0_rx_cplt_flag, UART_TIMEOUT, UART_DMA_TIME) != WAIT_STATUS_OK)
 		{
 			return TEST_FAILED;
 		}
@@ -76,7 +76,7 @@ t_status UART_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t 
 		/* end commands DEVICE 0 -> DEVICE 1 */
 
 		/* check callback complete flag */
-		if(wait_till_flag_set_or_timeout(&device1_rx_cplt_flag, UART_TIMEOUT, UART_DMA_TIME) != WAIT_STATUS_OK)
+		if(wait_till_flag_set_or_timeout(NOT_ADC,UART_DEVICE_1->hdmarx, &device1_rx_cplt_flag, UART_TIMEOUT, UART_DMA_TIME) != WAIT_STATUS_OK)
 		{
 			return TEST_FAILED;
 		}

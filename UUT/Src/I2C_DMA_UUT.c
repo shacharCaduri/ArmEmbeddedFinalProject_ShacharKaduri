@@ -62,7 +62,7 @@ t_status I2C_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t i
 		/* end commands Master -> Slave */
 
 		/* check callback complete flag */
-		if(wait_till_flag_set_or_timeout(&i2c_slave_rcv_callback_flag, I2C_TIMEOUT, I2C_DMA_TIME) != WAIT_STATUS_OK)
+		if(wait_till_flag_set_or_timeout(NOT_ADC,I2C_MASTER->hdmarx,&i2c_slave_rcv_callback_flag, I2C_TIMEOUT, I2C_DMA_TIME) != WAIT_STATUS_OK)
 		{
 			return TEST_FAILED;
 		}
@@ -84,7 +84,7 @@ t_status I2C_UUT_DMA(uint8_t *bit_pattern, uint8_t bit_pattern_length, uint8_t i
 		/* end commands Slave -> Master */
 
 		/* check callback complete flag */
-		if(wait_till_flag_set_or_timeout(&i2c_master_rcv_callback_flag, I2C_TIMEOUT, I2C_DMA_TIME) != WAIT_STATUS_OK)
+		if(wait_till_flag_set_or_timeout(NOT_ADC,I2C_SLAVE->hdmarx, &i2c_master_rcv_callback_flag, I2C_TIMEOUT, I2C_DMA_TIME) != WAIT_STATUS_OK)
 		{
 			return TEST_FAILED;
 		}

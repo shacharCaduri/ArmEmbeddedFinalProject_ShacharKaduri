@@ -1,0 +1,5 @@
+../UUT/Src/ExtraTools.c:12:5:__io_putchar	16	static
+../UUT/Src/ExtraTools.c:19:5:_write	24	static
+../UUT/Src/ExtraTools.c:26:5:_read	32	static
+../UUT/Src/ExtraTools.c:51:6:print_msg	16	static
+../UUT/Src/ExtraTools.c:60:17:wait_till_flag_set_or_timeout	32	static
